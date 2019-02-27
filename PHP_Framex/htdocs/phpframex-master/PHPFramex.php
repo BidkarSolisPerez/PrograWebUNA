@@ -50,7 +50,7 @@ class Route {
     self::get($uri.'/(:string)', $controller.'@show');
     self::get($uri.'/(:string)/edit',$controller.'@edit');
     self::put($uri.'/(:string)',$controller.'@update');
-    self::delete($uri.'/:(string)',$controller.'@destroy');
+    self::delete($uri.'/(:string)',$controller.'@destroy');
   }
 
   /**
@@ -142,6 +142,8 @@ class Route {
               // Grab the controller name and method call
               $segments = explode('@',$last);
 
+              require_once('controllers/'.$segments[0].'.php');
+              
               // Instanitate controller
               $controller = new $segments[0]();
 
@@ -188,6 +190,8 @@ function redirect($url, $statusCode = 303) {
   header('Location: ' . $url, true, $statusCode);
   die();
 }
+?>
+<?php
 
 /**
 * Template engine
@@ -206,8 +210,15 @@ class Template {
      * @access private
      * @var string
      */
-    private $l_delim = '{',
-            $r_delim = '}';
+    private $l_delim = '{{', $r_delim = '}}';
+    
+    public function countDim($array) {
+      if (is_array(reset($array)))
+        $dim = $this->countDim(reset($array)) + 1;
+      else
+        $dim = 1;
+      return $dim;
+    }
 
     /**
      * Set template property in template file
@@ -218,10 +229,6 @@ class Template {
     public function assign( $key, $value ) {
         $this->vars[$key] = $value;
     }
-
-    public function reset() {
-        $this->vars = array();
-    }
     
     /**
      * Parce template file
@@ -231,16 +238,20 @@ class Template {
     public function parse( $template_file ) {
         if ( file_exists( $template_file ) ) {
             $content = file_get_contents($template_file);
-
             foreach ( $this->vars as $key => $value ) {
-                if ( is_array( $value ) ) {
+                $$key = $value;
+                if ( is_array( $value ) || is_bool( $value) ) {
+					if ($this->countDim($value)==1) $value = [$value];
                     $content = $this->parsePair($key, $value, $content);
                 } else {
                     $content = $this->parseSingle($key, (string) $value, $content);
                 }
             }
-
-            eval( '?> ' . $content . '<?php ' );
+            try {
+                eval('?> ' . $content . '<?php ' );
+            } catch (Throwable $t) {
+                $content = null;
+            }
         } else {
             exit( '<h1>Template error</h1>' );
         }
@@ -257,9 +268,9 @@ class Template {
      */
     private function parseSingle( $key, $value, $string, $index = null ) {
         if ( isset( $index ) ) {
-            $string = str_replace( $this->l_delim . '%index%' . $this->r_delim, $index, $string );
+            $string = str_replace( $this->l_delim . '.' . $this->r_delim, $index, $string );
         }
-        return str_replace( $this->l_delim . $key . $this->r_delim, $value, $string );
+        return str_replace( $this->l_delim . $key . $this->r_delim, strip_tags($value), $string );
     }
 
     /**
@@ -273,7 +284,20 @@ class Template {
     private function parsePair( $variable, $data, $string ) {
         $match = $this->matchPair($string, $variable);
         if( $match == false ) return $string;
-
+        
+        if (is_bool($data)) {
+            $start = $this->l_delim . '#'. $variable . $this->r_delim;
+            $end = $this->l_delim . '\/'. $variable . $this->r_delim;
+            $endx = $this->l_delim . '/'. $variable . $this->r_delim;
+            if ($data==false)
+                $string = preg_replace('/'.$start.'[\s\S]+?'.$end.'/', '', $string);
+            else {
+                $string = str_replace($start,'',$string);
+                $string = str_replace($endx,'',$string);
+            }
+            return $string;
+        }
+        
         $str = '';
         foreach ( $data as $k_row => $row ) {
             $temp = $match['1'];
@@ -299,7 +323,7 @@ class Template {
      * @return string matched content
      */
     private function matchPair( $string, $variable ) {
-        if ( !preg_match("|" . preg_quote($this->l_delim) . 'loop ' . $variable . preg_quote($this->r_delim) . "(.+?)". preg_quote($this->l_delim) . 'end loop' . preg_quote($this->r_delim) . "|s", $string, $match ) ) {
+        if ( !preg_match("|" . preg_quote($this->l_delim) . '#' . $variable . preg_quote($this->r_delim) . "(.+?)". preg_quote($this->l_delim) . '/' . $variable . preg_quote($this->r_delim) . "|s", $string, $match ) ) {
             return false;
         }
 
@@ -311,12 +335,49 @@ function view($filename,$variables=[]) {
     if (!isset($template)) {
       $template = new Template();
     }
-    $template->reset();
     foreach ($variables as $key => $value) {
-      $template->assign(key,value);
+      $template->assign($key,$value);
     }
     $template->parse('views/'.$filename.'.php');
 }
+?>
+<?php
+/**
+ * Model Class
+ * @author  Armando Arce <armando.arce@gmail.com>
+ */
+
+class Model {
+  
+  public static function all() {}
+  public static function find($id) {  }  
+  public static function update($id,$item) {}  
+  public static function create($item) {}  
+  public static function destroy($id) {}  
+}
+?>
+<?php
+/**
+ * Controller Class
+ * @author  Armando Arce <armando.arce@gmail.com>
+ */
+
+class Controller {
+  
+  public function index() {}
+  public function create() {}
+  public function store() {}
+  public function show($id) {}
+  public function edit($id) {}
+  public function update($id) {}
+  public function destroy($id) {}
+}
+?>
+<?php
+/**
+ * Input Class
+ * @author  Armando Arce <armando.arce@gmail.com>
+ */
 
 class Input {
   public static $routes = array();
@@ -325,3 +386,4 @@ class Input {
       return $_REQUEST[$name];
   }
 }
+?>
