@@ -1,5 +1,5 @@
 Create Table "user" (
-	"user_id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
 	"name" TEXT,
 	"apellidos" TEXT,
 	"email" TEXT,
