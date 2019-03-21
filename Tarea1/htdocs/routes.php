@@ -1,17 +1,15 @@
-<?php
+<?php  
   // file: routes.php
 
-  //Routes for user
-  Route::resource('user', 'UserController');
+  Route::get('/', function () { return view('home'); });
 
-  Route::post('user/(:string)/update',
-                       'UserController@update');
+  Route::resource('paciente', 'PacienteController');
 
-  Route::get('user/(:string)/delete',
-                       'UserController@destroy');
+  Route::post('paciente/(:string)/update',
+                       'PacienteController@update');
 
-  //Routes for log
-  Route::resource('log', 'LogController');
-					   
+  Route::get('paciente/(:string)/delete',
+                       'PacienteController@destroy');
+
   Route::dispatch();
 ?>
