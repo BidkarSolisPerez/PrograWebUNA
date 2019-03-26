@@ -15,7 +15,7 @@ CREATE TABLE "valor_presion" (
 );
 
 CREATE TABLE "log_presion" (
-	"log_id" INTEGER PRIMARY KEY,
+	"id" INTEGER PRIMARY KEY,
 	"fecha" DATE,
 	"hora" TIME,
 	"id_usuario" INTEGER,
