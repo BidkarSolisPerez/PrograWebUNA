@@ -1,6 +1,7 @@
 <?php  
   // file: controllers/PacienteController.php  
-  require_once('models/Paciente.php');  
+  require_once('models/Paciente.php');
+  require_once('models/Registro.php'); 
 
   class PacienteController extends Controller {  
     public function index() { 
@@ -13,6 +14,7 @@
     //Inicio método show
     public function show($id) {  
       $paciente = Paciente::find($id);
+      $registro = 
       return view('paciente/show',  
         ['paciente'=>$paciente,'rdnly'=>true,
          'title'=>'Detalles del paciente']);
