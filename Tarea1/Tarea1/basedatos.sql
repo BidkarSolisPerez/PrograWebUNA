@@ -9,22 +9,14 @@ Create Table "paciente" (
 
 CREATE TABLE "valor_presion" (
 	"id" INTEGER PRIMARY KEY,
-	"sistole" INTEGER,
-	"diastole" INTEGER,
-	"pulso" INTEGER
-);
-
-CREATE TABLE "log_presion" (
-	"id" INTEGER PRIMARY KEY,
 	"fecha" DATE,
 	"hora" TIME,
+	"sistole" INTEGER,
+	"diastole" INTEGER,
+	"pulso" INTEGER,
 	"id_usuario" INTEGER,
-	"id_presion" INTEGER,
-  FOREIGN KEY (id_usuario) REFERENCES paciente ("id"),
-	FOREIGN KEY (id_presion) REFERENCES valor_presion ("id")
+	FOREIGN KEY (id_usuario) REFERENCES paciente ("id")
 );
-
-
 
 
 ALTER TABLE "user"

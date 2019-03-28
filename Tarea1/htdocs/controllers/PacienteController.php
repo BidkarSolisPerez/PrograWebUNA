@@ -1,7 +1,7 @@
 <?php  
   // file: controllers/PacienteController.php  
   require_once('models/Paciente.php');
-  require_once('models/Registro.php'); 
+  require_once('models/Registro.php');
 
   class PacienteController extends Controller {  
     public function index() { 
@@ -14,9 +14,9 @@
     //Inicio método show
     public function show($id) {  
       $paciente = Paciente::find($id);
-      $registro = 
+      $registro = DB::Table("valor_presion")->where("id_usuario",$id)->get();
       return view('paciente/show',  
-        ['paciente'=>$paciente,'rdnly'=>true,
+        ['paciente'=>$paciente,'registro'=>$registro,'rdnly'=>true,
          'title'=>'Detalles del paciente']);
     }
     //Fin método show
@@ -79,6 +79,37 @@
       return redirect('/paciente');
     }
     //Fin método destroy
+
+    //Inicio registro
+    public function registro($id){
+      $registro = ['sistole'=>'','diastole'=>'',  
+               'pulso'=>'','id_usuario'=>$id];
+      return view('paciente/registroCreate',
+        ['registro'=>$registro,'rdnly'=>false,
+         'title'=>'Crear registro']); 
+    }
+    //Fin registro
+
+    //Inicio storeRegistro
+    public function storeRegistro() {
+      $date = new DateTime();
+
+
+      $fecha = date_format($date, 'Y-m-d');;  
+      $hora = date_format($date, 'H:i:s');;  
+      $sistole = Input::get('sistole');  
+      $diastole = Input::get('diastole');
+      $pulso = Input::get('pulso');
+      $id_usuario = Input::get('id_usuario');
+
+      $item = [
+        'fecha'=>$fecha,'hora'=>$hora,  
+        'sistole'=>$sistole,'diastole'=>$diastole,
+        'pulso'=>$pulso,'id_usuario'=>$id_usuario];  
+      Registro::create($item);
+      return redirect('/paciente');
+    }
+    //Fin storeRegistro
 
   }
   //Final clase controlador

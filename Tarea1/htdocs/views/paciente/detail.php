@@ -51,4 +51,5 @@
       {{/registro}}
       </tr>
     </table>
+    <a href="/registro/{{id}}">Nueva medición</a>
  </div>

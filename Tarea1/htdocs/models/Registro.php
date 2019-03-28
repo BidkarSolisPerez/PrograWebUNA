@@ -2,9 +2,9 @@
 
   // file: models/Registro.php
   class Registro extends Model {
-    protected static $table = 'registro';
+    protected static $table = 'valor_presion';
     protected static $columns = 
       ['fecha','hora','sistole',
-       'diastole','pulso'];
+       'diastole','pulso','id_paciente'];
   }
 ?>
