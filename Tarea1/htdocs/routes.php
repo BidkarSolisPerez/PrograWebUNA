@@ -12,14 +12,9 @@
   Route::get('paciente/(:string)/delete',
                        'PacienteController@destroy');
 
-  //Router para registros
-  Route::resource('paciente/(:string)/registro','RegistroController');
+  Route::get('/registro/(:string)','PacienteController@registro');
 
-  Route::post('paciente/(:string)/registro/update',
-                      "RegistroController@update");
-
-  Route::post('paciente/(:string)/registro/delete',
-                      "RegistroController@destroy");
+  Route::post('/registro','PacienteController@storeRegistro');
 
   Route::dispatch();
 ?>

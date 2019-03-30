@@ -7,18 +7,16 @@ Create Table "paciente" (
 	"edad" INTEGER
 );
 
-CREATE TABLE "log_presion" (
+CREATE TABLE "valor_presion" (
 	"id" INTEGER PRIMARY KEY,
 	"fecha" DATE,
 	"hora" TIME,
-	"id_usuario" INTEGER,
 	"sistole" INTEGER,
 	"diastole" INTEGER,
 	"pulso" INTEGER,
-  	FOREIGN KEY (id_usuario) REFERENCES paciente ("id")
+	"id_usuario" INTEGER,
+	FOREIGN KEY (id_usuario) REFERENCES paciente ("id")
 );
-
-
 
 
 ALTER TABLE "user"

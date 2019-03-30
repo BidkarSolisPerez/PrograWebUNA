@@ -33,3 +33,23 @@
      name="edad" value="{{edad}}">  
   </div>   
  </div>
+ <div class="row">
+    <table>
+      <tr>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Sistole</th>
+        <th>Diastole</th>
+        <th>Pulso</th>
+      </tr>
+      {{#registro}}
+        <tr><td>{{fecha}}</td>
+        <td>{{hora}}</td>
+        <td>{{diastole}}</td>
+        <td>{{sistole}}</td>
+        <td>{{pulso}}</td>
+      {{/registro}}
+      </tr>
+    </table>
+    <a href="/registro/{{id}}">Nueva medición</a>
+ </div>

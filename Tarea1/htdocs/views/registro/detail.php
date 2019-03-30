@@ -17,5 +17,12 @@
    <input class="u-full-width" type="number" min="0"   
      {{#rdnly}} readonly {{/rdnly}}  
      name="pulso" value="{{pulso}}">  
-  </div>   
+  </div>  
+ </div>
+ <div class="row">
+  <div class="four columns">    
+   <input class="u-full-width" type="number" min="0" hidden   
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="id_usuario" value="{{id_usuario}}">  
+  </div> 
  </div>
