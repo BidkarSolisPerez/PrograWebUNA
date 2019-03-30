@@ -6,7 +6,7 @@
 
     //Inicio método index
     public function index() { 
-      $registros = DB::table("log_presion")->get();
+      $registros = DB::Table("log_presion")->get();
       return view('registro/index',  
        ['registros'=>$registros,
         'title'=>'Registro presión']);
@@ -14,8 +14,7 @@
 
     //Inicio método create
     public function create() {
-        $registro = ['fecha'=>'','hora'=>'',  
-                 'sistole'=>'','diastole'=>'',
+        $registro = ['sistole'=>'','diastole'=>'',
                  'pulso'=>''];
         return view('registro/create',
           ['registro'=>$registro,'rdnly'=>false,
@@ -25,9 +24,10 @@
 
     //Inicio método store
     public function store() {
+     
+      $storeTime = date("Y-m-d H:i:s");
+      
       $id_paciente = $id;
-
-      $storeTime = date("Y-m-d H:i:s");  
       $fecha = $storeTime("Y-m-d");    
       $hora = $storeTime("H:i:s");
       $sistole = Input::get('sistole');  
@@ -35,13 +35,12 @@
       $pulso = Input::get('pulso');
       
       $itemPresion = [
-        'sistole'=>$sistole,'diastole'=>$diastole,  
+        'fecha'=>$fecha,'hora'=>$hora,  
+        'profile_id'=>$id_paciente,'sistole'=>$sistole,'diastole'=>$diastole,
         'pulso'=>$pulso];  
-      DB::table("log_presion")->create($item);
+      Registro::create($item);
 
-      
-
-      return redirect('/registro');
+      return redirect('/paciente\/'.$id_pacienteid.'/registro');
     }
     //Fin método store
 

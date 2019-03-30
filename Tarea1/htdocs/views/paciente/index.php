@@ -29,7 +29,7 @@
         <img src="/icons/font-edit.png" style="width:15px"></i></a>
       <a class="button button-icon" href="paciente/{{id}}/delete">
         <img src="/icons/font-trash.png" style="width:15px"></i></a>
-      <a href="paciente/{{id}}/registro">Registro presión</a>
+      <a href="/registro">Registro presión</a>
       </td>
       </tr>
       {{/pacientes}}</tbody>
