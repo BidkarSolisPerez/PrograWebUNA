@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- file: views/book/index.html -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+{{> header}}
+</head>
+<body>
+{{> navbar}}
+ <div class="container">
+  <div class="row">
+   <div style="margin-top: 10%">
+     <h3>{{title}}</h3>
+     <table><thead>
+      <tr><th>Title</th><th>Author</th><th>Publisher</th>
+          <th>Ed.</th><th>Actions</th></th></tr>
+      </thead><tbody>
+      {{#books}}
+      <tr><td>{{title}}</td>
+      <td>{{author}}</td>
+      <td>{{publisher}}</td>
+      <td>{{edition}}</td>
+      <td>
+      <a class="button button-icon" href="book/{{id}}">
+        <img src="/icons/font-eye.png" style="width:15px"></i></a>
+      <a class="button button-icon" href="book/{{id}}/edit">
+        <img src="/icons/font-edit.png" style="width:15px"></i></a>
+      <a class="button button-icon" href="book/{{id}}/delete">
+        <img src="/icons/font-trash.png" style="width:15px"></i></a>
+      </td>
+      </tr>
+      {{/books}}</tbody>
+     </table>
+     <a class="button button-primary" href="/book/create">New</a>
+    </div>
+   </div>
+ </div>
+</body>

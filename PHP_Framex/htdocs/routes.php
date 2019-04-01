@@ -1,13 +1,15 @@
-<?php
+<?php  
   // file: routes.php
 
-  Route::resource('student', 'StudentController');
+  Route::get('/', function () { return view('home'); });
 
-  Route::post('student/(:string)/update',
-                       'StudentController@update');
+  Route::resource('book', 'BookController');
 
-  Route::get('student/(:string)/delete',
-                       'StudentController@destroy');
+  Route::post('book/(:string)/update',
+                       'BookController@update');
+
+  Route::get('book/(:string)/delete',
+                       'BookController@destroy');
 
   Route::dispatch();
 ?>

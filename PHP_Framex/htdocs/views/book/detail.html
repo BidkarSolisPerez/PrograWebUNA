@@ -1,0 +1,65 @@
+<!-- file: views/book/detail.html -->  
+ <div class="row">  
+  <div class="six columns">  
+   <label for="title">Title</label>  
+   <input class="u-full-width" type="text"   
+      {{#rdnly}} readonly {{/rdnly}}  
+    name="title" value="{{title}}">  
+  </div>  
+  <div class="six columns">  
+   <label for="author_id">Author</label>  
+   {{^rdnly}}  
+   <select class="u-full-width" name="author_id">  
+   {{#authors}}  
+     <option value="{{author_id}}">{{author_name}}</option>
+   {{/authors}}  
+   </select>  
+   {{~rdnly}}  
+   {{#rdnly}}  
+   <input class="u-full-width" type="text" readonly  
+    name="author" value="{{author}}">  
+   {{/rdnly}}  
+  </div>  
+ </div>  
+ <div class="row">  
+  <div class="six columns">  
+   <label for="publisher_id">Publisher</label>  
+   {{^rdnly}}  
+   <select class="u-full-width" name="publisher_id">  
+   {{#publishers}}  
+     <option value="{{publisher_id}}">{{publisher_name}}</option>  
+   {{/publishers}}  
+   </select>  
+   {{~rdnly}}  
+   {{#rdnly}}  
+   <input class="u-full-width" type="text" readonly  
+     name="publisher" value="{{publisher}}">  
+   {{/rdnly}}  
+  </div>  
+  <div class="six columns">  
+   <label for="edition">Edition</label>  
+   <input class="u-full-width" type="text"   
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="edition" value="{{edition}}">  
+  </div>  
+ </div>  
+ <div class="row">  
+  <div class="four columns">  
+   <label for="copyright">Copyright</label>  
+   <input class="u-full-width" type="number" min="1500" max="2099"  
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="copyright" value="{{copyright}}">  
+  </div>  
+  <div class="four columns">  
+   <label for="pages">Pages</label>  
+   <input class="u-full-width" type="number" min="0"   
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="pages" value="{{pages}}">  
+  </div>  
+  <div class="four columns">  
+   <label for="language">Language</label>  
+   <input class="u-full-width" type="text"   
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="language" value="{{language}}">  
+  </div>  
+ </div>
