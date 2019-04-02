@@ -1,0 +1,21 @@
+<!-- file: views/author/detail.html -->  
+ <div class="row">  
+  <div class="four columns">  
+   <label for="name">Name</label>  
+   <input class="u-full-width" type="text"  
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="name" value="{{name}}">  
+  </div>  
+  <div class="four columns">  
+   <label for="birth_place">Birth place</label>  
+   <input class="u-full-width" type="text" min="0"   
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="birth_place" value="{{birth_place}}">  
+  </div>  
+  <div class="four columns">  
+   <label for="birth_date">Birthd Date</label>  
+   <input class="u-full-width" type="datetime"   
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="birth_date" value="{{birth_date}}">  
+  </div>  
+ </div>

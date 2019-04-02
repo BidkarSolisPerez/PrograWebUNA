@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- file: views/author/index.php -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+{{> header}}
+</head>
+<body>
+{{> navbar}}
+ <div class="container">
+  <div class="row">
+   <div style="margin-top: 10%">
+     <h3>{{title}}</h3>
+     <table><thead>
+      <tr><th>Author Name</th><th>Birth place</th><th>Birth date</th><th></th></tr>
+      </thead><tbody>
+      {{#authors}}
+      <tr><td>{{name}}</td>
+      <td>{{birth_place}}</td>
+      <td>{{birth_date}}</td>
+      <td>
+      <a class="button button-icon" href="author/{{id}}">
+        <img src="/icons/font-eye.png" style="width:15px"></i></a>
+      <a class="button button-icon" href="author/{{id}}/edit">
+        <img src="/icons/font-edit.png" style="width:15px"></i></a>
+      <a class="button button-icon" href="author/{{id}}/delete">
+        <img src="/icons/font-trash.png" style="width:15px"></i></a>
+      </td>
+      </tr>
+      {{/authors}}</tbody>
+     </table>
+     <a class="button button-primary" href="/author/create">New</a>
+    </div>
+   </div>
+ </div>
+</body>
