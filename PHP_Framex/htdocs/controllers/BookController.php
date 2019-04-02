@@ -7,14 +7,14 @@
       $books = DB::table("book_view")->get();
       return view('book/index',  
        ['books'=>$books,
-        'title'=>'Books List']);
+        'title'=>'Books List','login'=>Auth::check()]);
     }
 
     public function show($id) {  
       $book = DB::table("book_view")->find($id);  
-      return view('book/show',  
+      return view('book/show',
         ['book'=>$book,'rdnly'=>true,
-         'title'=>'Book Detail']);
+         'title'=>'Book Detail','login'=>Auth::check()]);
     }  
 
     public function create() {
@@ -26,7 +26,7 @@
       return view('book/create',
         ['book'=>$book,'authors'=>$authors, 
          'publishers'=>$publishers,'rdnly'=>false,
-         'title'=>'Book Create']); 
+         'title'=>'Book Create','login'=>Auth::check()]); 
     }
 
     public function store() {
@@ -53,7 +53,7 @@
       return view('book/edit',
         ['book'=>$book,'authors'=>$authors, 
          'publishers'=>$publishers,'rdnly'=>false,
-         'title'=>'Book Edit']);
+         'title'=>'Book Edit','login'=>Auth::check()]);
     }
 
     public function update($id) {  

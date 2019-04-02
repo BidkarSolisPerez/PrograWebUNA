@@ -1,8 +1,15 @@
-<!-- file: views/navbar.html -->
- <div class="navBar" id="mainNavBar">
-  <a href="/">Home</a>
-  <a href="/book">Books</a>
-  <a href="/author">Authors</a>
+<!-- file: views/navbar.html -->  
+ <div class="navBar" id="mainNavBar">  
+  <a href="/">Home</a>  
+  <a href="/book">Books</a>  
+  <a href="/author">Authors</a>  
   <a href="/publisher">Publishers</a>
-  <a href="javascript:void(0);" class="icon" onClick="openDrawerMenu()">&#9776;</a>
+  {{#login}}
+  <a href="/logout" login >Logout</a>
+  {{/login}}
+  {{^login}}
+  <a href="/login" login >Login</a>
+  {{~login}}
+  <a href="javascript:void(0);" class="icon" 
+     onClick="openDrawerMenu()">&#9776;</a>  
  </div>
