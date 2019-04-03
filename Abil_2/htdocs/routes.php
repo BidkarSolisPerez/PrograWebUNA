@@ -1,6 +1,9 @@
-<?php
-    
-    Route::get('/',function() { echo 'Hello, World!'; });
-    
-    Route::dispatch();
-?>
+<?php    
+  // file: routes.php  
+
+  Route::resource('book', 'BookController');
+
+  Route::dispatch();
+
+?> 
+
