@@ -7,14 +7,14 @@
       $authors = DB::table("author")->get();
       return view('author/index',  
        ['authors'=>$authors,
-        'title'=>'Author List']);
+        'title'=>'Author List','login'=>Auth::check()]);
     }
 
     public function show($id) {  
       $author = DB::table("author")->find($id);  
       return view('author/show',  
         ['author'=>$author,'rdnly'=>true,
-         'title'=>'Author Detail']);
+         'title'=>'Author Detail','login'=>Auth::check()]);
     }  
 
     public function create() {
@@ -22,7 +22,7 @@
                'birth_date'=>''];
       return view('author/create',
         ['author'=>$author,'rdnly'=>false,
-         'title'=>'Author Create']); 
+         'title'=>'Author Create','login'=>Auth::check()]); 
     }
 
     public function store() {
@@ -40,7 +40,7 @@
       $author = DB::table('author')->find($id);
       return view('author/edit',
         ['author'=>$author,'rdnly'=>false,
-         'title'=>'Author Edit']);
+         'title'=>'Author Edit','login'=>Auth::check()]);
     }
 
     public function update($id) {  

@@ -1,8 +1,10 @@
 <?php  
   // file: routes.php
 
-  Route::get('/', function () { return view('home'); });
-
+  Route::get('/', function () { return view('home',
+      ['login'=>Auth::check()]); });
+	  
+  //Book routes
   Route::resource('book', 'BookController');
 
   Route::post('book/(:string)/update',
@@ -10,7 +12,8 @@
 
   Route::get('book/(:string)/delete',
                        'BookController@destroy');
-					   
+
+  // Author routes
   Route::resource('author','AuthorController');
   
   Route::post('author/(:string)/update',
