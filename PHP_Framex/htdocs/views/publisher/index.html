@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- file: views/author/index.php -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+{{> header}}
+</head>
+<body>
+{{> navbar}}
+ <div class="container">
+  <div class="row">
+   <div style="margin-top: 10%">
+     <h3>{{title}}</h3>
+     <table><thead>
+      <tr><th>Publisher Name</th><th>Origin Country</th><th>Founded date</th><th></th></tr>
+      </thead><tbody>
+      {{#publishers}}
+      <tr><td>{{name}}</td>
+      <td>{{origin_country}}</td>
+      <td>{{founded_date}}</td>
+      <td>
+      <a class="button button-icon" href="publisher/{{id}}">
+        <img src="/icons/font-eye.png" style="width:15px"></i></a>
+	  {{#login}}
+      <a class="button button-icon" href="publisher/{{id}}/edit">
+        <img src="/icons/font-edit.png" style="width:15px"></i></a>
+      <a class="button button-icon" href="publisher/{{id}}/delete">
+        <img src="/icons/font-trash.png" style="width:15px"></i></a>
+      </td>
+	  {{/login}}
+      </tr>
+      {{/publishers}}</tbody>
+     </table>
+	 {{#login}}
+     <a class="button button-primary" href="/publisher/create">New</a>
+	 {{/login}}
+    </div>
+   </div>
+ </div>
+</body>

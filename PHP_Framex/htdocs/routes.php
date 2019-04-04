@@ -22,6 +22,15 @@
   Route::get('author/(:string)/delete',
                        'AuthorController@destroy');
 					   
+  // Publisher routes
+  Route::resource('publisher','PublisherController');
+  
+  Route::post('publisher/(:string)/update',
+                       'PublisherController@update');
+
+  Route::get('publisher/(:string)/delete',
+                       'PublisherController@destroy');  
+					   
   // Authentication Routes  
   Route::get('login', 
              'LoginController@showLoginForm');
