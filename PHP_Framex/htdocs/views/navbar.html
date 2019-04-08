@@ -12,6 +12,9 @@
   {{/login}}
   {{^login}}
   <a href="/login" login >Login</a>
+  {{#isSuper}}
+  <a href="/user">Users</a>
+  {{/isSuper}}
   {{~login}}
   <a href="javascript:void(0);" class="icon" 
      onClick="openDrawerMenu()">&#9776;</a>  
