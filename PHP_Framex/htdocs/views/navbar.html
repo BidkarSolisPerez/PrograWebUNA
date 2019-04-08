@@ -6,6 +6,9 @@
   <a href="/publisher">Publishers</a>
   {{#login}}
   <a href="/logout" login >Logout</a>
+  {{#isSuper}}
+  <a href="/user">Users</a>
+  {{/isSuper}}
   {{/login}}
   {{^login}}
   <a href="/login" login >Login</a>

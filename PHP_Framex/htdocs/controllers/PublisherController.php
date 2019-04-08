@@ -5,9 +5,14 @@
   class PublisherController extends Controller {  
     public function index() { 
       $publishers = DB::table("publisher")->get();
+      $isSuper = false;
+
+      if(Session::get('super') == 1){
+        $isSuper = true;
+      }
       return view('publisher/index',  
        ['publishers'=>$publishers,
-        'title'=>'Publisher List','login'=>Auth::check()]);
+        'title'=>'Publisher List','isSuper'=>$isSuper,'login'=>Auth::check()]);
     }
 
     public function show($id) {  

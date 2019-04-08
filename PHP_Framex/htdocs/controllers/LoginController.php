@@ -13,9 +13,18 @@
     public function login() {
       $email = Input::get('email');   
       $password = Input::get('password');
+
+      $user = DB::table("users")->where("email",$email)->get();
+      Session::put('super',$user[0]['super_user']);
+
+      $isSuper = false;
+      if(Session::get('super') == 1){
+        $isSuper = true;
+      }
+
       if (Auth::attempt(['email' => $email,
         'password' => $password])) {
-        return redirect('/');
+        return redirect('/',['isSuper'=>false]);
       }
       return redirect('/loginFails');
     }
@@ -27,6 +36,7 @@
 
     public function logout() {
       Auth::logout();
+      Session::forget("super");
       return redirect('/');
     }
   }

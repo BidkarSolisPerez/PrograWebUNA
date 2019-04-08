@@ -5,9 +5,14 @@
   class AuthorController extends Controller {  
     public function index() { 
       $authors = DB::table("author")->get();
+      $isSuper = false;
+
+      if(Session::get('super') == 1){
+        $isSuper = true;
+      }
       return view('author/index',  
        ['authors'=>$authors,
-        'title'=>'Author List','login'=>Auth::check()]);
+        'title'=>'Author List','isSuper'=>$isSuper,'login'=>Auth::check()]);
     }
 
     public function show($id) {  

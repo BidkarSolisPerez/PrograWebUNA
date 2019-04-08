@@ -5,9 +5,15 @@
   class BookController extends Controller {  
     public function index() { 
       $books = DB::table("book_view")->get();
+      $isSuper = false;
+
+      if(Session::get('super') == 1){
+        $isSuper = true;
+      }
+
       return view('book/index',  
        ['books'=>$books,
-        'title'=>'Books List','login'=>Auth::check()]);
+        'title'=>'Books List','isSuper'=>$isSuper,'login'=>Auth::check()]);
     }
 
     public function show($id) {  

@@ -22,13 +22,13 @@
       <td>
       <a class="button button-icon" href="publisher/{{id}}">
         <img src="/icons/font-eye.png" style="width:15px"></i></a>
-	  {{#login}}
+	  {{#isSuper}}
       <a class="button button-icon" href="publisher/{{id}}/edit">
         <img src="/icons/font-edit.png" style="width:15px"></i></a>
       <a class="button button-icon" href="publisher/{{id}}/delete">
         <img src="/icons/font-trash.png" style="width:15px"></i></a>
       </td>
-	  {{/login}}
+	  {{/isSuper}}
       </tr>
       {{/publishers}}</tbody>
      </table>
