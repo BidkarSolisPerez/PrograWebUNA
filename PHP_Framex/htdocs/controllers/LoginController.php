@@ -22,15 +22,13 @@
       $password = Input::get('password');
       
       $user = DB::table("users")->where("email",$email)->get();
-      Session::put('super',$user[0]['super_user']);
 
-      $isSuper = false;
-      if(Session::get('super') == 1){
-        $isSuper = true;
+      if($user[0]['super_user'] == 1){
+        Session::put('super',$user[0]['super_user']);
       }
       if (Auth::attempt(['email' => $email,
         'password' => $password])) {
-        return redirect('/',['isSuper'=>$isSuper]);
+        return redirect('/');
       }
       return redirect('/loginFails');
     }

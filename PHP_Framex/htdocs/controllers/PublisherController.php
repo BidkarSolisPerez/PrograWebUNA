@@ -12,14 +12,14 @@
       }
       return view('publisher/index',  
        ['publishers'=>$publishers,
-        'title'=>'Publisher List','isSuper'=>$isSuper,'login'=>Auth::check()]);
+        'title'=>'Publisher List','isSuper'=>Session::has('super'),'login'=>Auth::check()]);
     }
 
     public function show($id) {  
       $publisher = DB::table("publisher")->find($id);  
       return view('publisher/show',  
         ['publisher'=>$publisher,'rdnly'=>true,
-         'title'=>'Publisher Detail','login'=>Auth::check()]);
+         'title'=>'Publisher Detail','isSuper'=>Session::has('super'),'login'=>Auth::check()]);
     }  
 
     public function create() {

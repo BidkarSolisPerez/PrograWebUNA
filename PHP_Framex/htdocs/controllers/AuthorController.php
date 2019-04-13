@@ -6,7 +6,6 @@
     public function index() { 
       $authors = DB::table("author")->get();
       $isSuper = false;
-
       if(Session::get('super')==1){
         $isSuper = true;
       }
@@ -24,7 +23,7 @@
       }  
       return view('author/show',  
         ['author'=>$author,'rdnly'=>true,
-         'title'=>'Author Detail','isSuper'=>$isSuper,'login'=>Auth::check()]);
+         'title'=>'Author Detail','isSuper'=>Session::has('super'),'login'=>Auth::check()]);
     }  
 
     public function create() {

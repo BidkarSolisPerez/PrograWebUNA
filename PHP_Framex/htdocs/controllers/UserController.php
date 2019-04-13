@@ -12,7 +12,7 @@
       }
       return view('user/index',  
        ['users'=>$users,
-        'title'=>'Users List','isSuper'=>$isSuper,'login'=>Auth::check()]);
+        'title'=>'Users List','isSuper'=>Session::has('super'),'login'=>Auth::check()]);
     }
 
     public function show($id) {  
@@ -24,7 +24,7 @@
       }  
       return view('user/show',  
         ['user'=>$user,'rdnly'=>true,
-         'title'=>'User Detail','isSuper'=>$isSuper,'login'=>Auth::check()]);
+         'title'=>'User Detail','isSuper'=>Session::has('super'),'login'=>Auth::check()]);
     }  
 
     public function destroy($id) {
