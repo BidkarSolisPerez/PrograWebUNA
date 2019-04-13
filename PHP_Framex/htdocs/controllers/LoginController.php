@@ -6,14 +6,21 @@
   class LoginController extends Controller {
 
     public function showLoginForm() {
+
+      $isSuper = false;
+
+      if(Session::get('super')==1){
+        $isSuper = true;
+      }
+
       return view('Auth/login',
-        ['error'=>false,'login'=>Auth::check()]);
+        ['error'=>false,'isSuper'=>$isSuper,'login'=>Auth::check()]);
     }
 
     public function login() {
       $email = Input::get('email');   
       $password = Input::get('password');
-
+      
       $user = DB::table("users")->where("email",$email)->get();
       Session::put('super',$user[0]['super_user']);
 
@@ -21,10 +28,9 @@
       if(Session::get('super') == 1){
         $isSuper = true;
       }
-
       if (Auth::attempt(['email' => $email,
         'password' => $password])) {
-        return redirect('/',['isSuper'=>false]);
+        return redirect('/',['isSuper'=>$isSuper]);
       }
       return redirect('/loginFails');
     }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- file: views/user/index.php -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+{{> header}}
+</head>
+<body>
+{{> navbar}}
+ <div class="container">
+  <div class="row">
+   <div style="margin-top: 10%">
+     <h3>{{title}}</h3>
+     <table><thead>
+      <tr><th>User Name</th><th>User email</th><th></th></tr>
+      </thead><tbody>
+      {{#users}}
+      <tr><td>{{name}}</td>
+      <td>{{email}}</td>
+      <td>
+      <a class="button button-icon" href="user/{{id}}">
+        <img src="/icons/font-eye.png" style="width:15px"></i></a>
+	  {{#isSuper}}
+      <a class="button button-icon" href="user/{{id}}/delete">
+        <img src="/icons/font-trash.png" style="width:15px"></i></a>
+      </td>
+	  {{/isSuper}}
+      </tr>
+      {{/users}}</tbody>
+     </table>
+    </div>
+   </div>
+ </div>
+</body>

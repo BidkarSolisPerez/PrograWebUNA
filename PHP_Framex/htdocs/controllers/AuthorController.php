@@ -7,19 +7,24 @@
       $authors = DB::table("author")->get();
       $isSuper = false;
 
-      if(Session::get('super') == 1){
+      if(Session::get('super')==1){
         $isSuper = true;
       }
       return view('author/index',  
        ['authors'=>$authors,
-        'title'=>'Author List','isSuper'=>$isSuper,'login'=>Auth::check()]);
+        'title'=>'Author List','isSuper'=>Session::has('super'),'login'=>Auth::check()]);
     }
 
     public function show($id) {  
-      $author = DB::table("author")->find($id);  
+      $author = DB::table("author")->find($id);
+      $isSuper = false;
+
+      if(Session::get('super')==1){
+        $isSuper = true;
+      }  
       return view('author/show',  
         ['author'=>$author,'rdnly'=>true,
-         'title'=>'Author Detail','login'=>Auth::check()]);
+         'title'=>'Author Detail','isSuper'=>$isSuper,'login'=>Auth::check()]);
     }  
 
     public function create() {

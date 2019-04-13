@@ -2,7 +2,7 @@
   // file: routes.php
 
   Route::get('/', function () { return view('home',
-      ['login'=>Auth::check()]); });
+      ['login'=>Auth::check(),'isSuper'=>Session::has('super')]); });
 	  
   //Book routes
   Route::resource('book', 'BookController');
@@ -45,6 +45,15 @@
         'RegisterController@showRegistrationForm');  
   Route::post('register', 
                     'RegisterController@register');
+
+  // User routes
+  Route::resource('user', 'UserController');
+
+  Route::post('user/(:string)/update',
+                       'UserController@update');
+
+  Route::get('user/(:string)/delete',
+                       'UserController@destroy');
 
   Route::dispatch();
 ?>

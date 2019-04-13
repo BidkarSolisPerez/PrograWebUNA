@@ -1,0 +1,15 @@
+<!-- file: views/author/detail.html -->  
+ <div class="row">  
+  <div class="four columns">  
+   <label for="name">Name</label>  
+   <input class="u-full-width" type="text"  
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="name" value="{{name}}">  
+  </div>  
+  <div class="four columns">  
+   <label for="email">Email</label>  
+   <input class="u-full-width" type="text" min="0"   
+     {{#rdnly}} readonly {{/rdnly}}  
+     name="email" value="{{email}}">  
+  </div>   
+ </div>

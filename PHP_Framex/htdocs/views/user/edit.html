@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- file: views/user/edit.html -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+{{> header}}
+</head>
+<body>
+ {{> navbar}}
+ <div class="container">
+  <div class="row">
+   <div class="eleven column" style="margin-top: 10%">
+    <h2>{{title}}</h2>
+    {{#user}}
+    <form action="/user/{{id}}/update" method="POST">
+     {{> user/detail}}
+     <input class="button-primary" type="submit" value="Update">
+    </form>
+    {{/user}}
+   </div>
+  </div>
+ </div>
+</body>
