@@ -1,0 +1,28 @@
+<!-- file: views/navbar.html -->
+  <div class="row">  
+    <div class="three columns" style="margin-top: 1%">  
+    <img src="/icons/book-store.png" 
+         style="width:150px" class="button-icon"/>
+  </div>
+  <form action="/book/search" method="post">
+  <div class="five columns" style="margin-top: 2%">  
+    <input class="u-full-width" type="text" name="keyword" value="">
+  </div>
+  <div class="two columns" style="margin-top: 2%"> 
+    <input class="button-primary" type="submit" value="Search">
+  </div>
+  </form>
+  <div class="two columns" style="margin-top: 3%"> 
+   <a href="/cart/">
+       <img src="/icons/cart.png" style="width:25px"/>
+    </a>
+  </div>
+  </div>
+ <div class="navBar" id="mainNavBar">  
+  <a href="/">All Categories</a>
+  <a href="/book/cat/operating_systems">Operating Systems</a>  
+  <a href="/book/cat/databases">Databases</a>
+  <a href="/book/cat/computer_networks">Computer Networks</a>
+  <a href="javascript:void(0);" class="icon" 
+     onClick="openDrawerMenu()">&#9776;</a>
+ </div>
