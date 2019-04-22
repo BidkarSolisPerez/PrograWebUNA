@@ -1,21 +1,27 @@
 <?php  
   // file: controllers/CartController.php
-  require_once('models/BookModel.php');
+  require_once('models/MovieModel.php');
 
   class CartController extends Controller {  
 
     public function index() {
-      $books = [];
+      $movies = [];
       $total = 0;
+      $showcart = false;
       $items = Session::get("items");
-      if (isset($items))
+      
+
+      if (isset($items)){
         foreach ($items as $item) {
-           $book = BookModel::find($item);
-           $total = $total + $book[0]['price'];
-           $books = array_merge($books,$book);
-        }
+          $movie = MovieModel::find($item);
+          if(isset($movie[0])){
+            $total = $total + $movie[0]['price'];
+          }
+          $movies = array_merge($movies,$movie);
+       }
+      }
       return view('cart/index',  
-       ['books'=>$books,'total'=>$total,
+       ['movies'=>$movies,'total'=>$total,'showcart'=>isset($movies[0]),
         'title'=>'Shopping cart']);
     }
 

@@ -1,0 +1,42 @@
+<!-- file: views/book/detail.html -->  
+ <div class="row">  
+  <div class="six columns">  
+   <label for="movie_title">Title</label>  
+   <input class="u-full-width" type="text" 
+    name="movie_title" value="{{title}}">
+  </div>  
+  <div class="six columns">  
+   <label for="movie_description">Description</label>     
+   <input class="u-full-width" type="text" readonly  
+    name="movie_description" value="{{movie_description}}">   
+  </div>  
+ </div>  
+ <div class="row">  
+  <div class="four columns">  
+   <label for="movie_duration">Duration</label>     
+   <input class="u-full-width" type="number"  min="1500" max="2099 readonly  
+     name="movie_duration" value="{{movie_duration}}">   
+  </div>  
+  <div class="four columns">  
+   <label for="movie_director">Director</label>  
+   <input class="u-full-width" type="text"   
+     name="movie_director" value="{{movie_director}}">  
+  </div>
+  <div class="four columns">  
+   <label for="movie_year">Year</label>  
+   <input class="u-full-width" type="number"  min="1500" max="2099    
+     name="movie_year" value="{{movie_year}}">  
+  </div>    
+ </div>  
+ <div class="row">  
+  <div class="four columns">  
+   <label for="movie_category">Category</label>  
+   <input class="u-full-width" type="text"   
+     name="movie_category" value="{{movie_category}}">  
+  </div>  
+  <div class="four columns">  
+   <label for="price">Price</label>  
+   <input class="u-full-width" type="number" min="0"    
+     name="price" value="{{price}}">  
+  </div>   
+ </div>

@@ -1,5 +1,5 @@
 <html lang="en">
-<!-- file: views/cart/index.html -->
+<!-- file: views/book/index.html -->
 <head>
 <meta charset="utf-8">
 <title>{{title}}</title>
@@ -11,10 +11,9 @@
   <div class="row">
      <h3>{{title}}</h3>
      <table><thead>
-      <tr><th>Title</th><th>Author</th><th>Publisher</th>
+      <tr><th>Title</th><th>Description</th><th>Director</th>
           <th>Price</th><th>Actions</th></th></tr>
       </thead><tbody>
-      {{#showcart}}
       {{#movies}}
       <tr><td>{{movie_title}}</td>
       <td>{{movie_description}}</td>
@@ -22,16 +21,10 @@
       <td>{{price}}</td>
       <td>
       <a class="button button-icon" href="/movie/{{id}}">
-        <img src="/icons/font-eye.png" style="width:15px"></a>
-      <a class="button button-icon" href="/cart/{{id}}/delete">
-        <img src="/icons/font-trash.png" style="width:15px"></a>
-      </td>
+        <img src="/icons/font-eye.png" style="width:15px"/></a>
       </tr>
-      {{/movies}}
-      {{/showcart}}
-    </tbody>
+      {{/movies}}</tbody>
      </table>
-     <a class="button button-primary" href="/cart/checkout">Checkout</a>
     </div>
  </div>
 </body>
