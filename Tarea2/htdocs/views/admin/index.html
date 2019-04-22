@@ -1,0 +1,35 @@
+<html lang="en">
+<!-- file: views/book/index.html -->
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+{{> header}}
+</head>
+<body>
+{{> navbarAdmin}}
+ <div class="container" style="margin-top: 5%">
+  <div class="row">
+     <h3>{{title}}</h3>
+     <table><thead>
+      <tr><th>Title</th><th>Description</th><th>Director</th>
+          <th>Price</th><th>Actions</th></th></tr>
+      </thead><tbody>
+      {{#movies}}
+      <tr><td>{{movie_title}}</td>
+      <td>{{movie_description}}</td>
+      <td>{{movie_director}}</td>
+      <td>{{price}}</td>
+      <td>
+      <a class="button button-icon" href="admin/movie/{{id}}">
+        <img src="/icons/font-eye.png" style="width:15px"/></a>
+      <a class="button button-icon" href="admin/movie/{{id}}/edit">
+        <img src="/icons/font-edit.png" style="width:15px"></i></a>
+      <a class="button button-icon" href="admin/{{id}}/delete">
+        <img src="/icons/font-trash.png" style="width:15px"></i></a>
+      </tr>
+      {{/movies}}</tbody>
+     </table>
+     <a class="button button-primary" href="/admin/movie/create">New</a>
+    </div>
+ </div>
+</body>

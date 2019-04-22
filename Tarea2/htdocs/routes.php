@@ -20,6 +20,32 @@
 
   Route::get('/cart/(:string)/delete','CartController@destroy');
 
+  // Routes Admin Controller
+  Route::resource('admin','AdminController');
+
+  Route::get('admin/movie/(:string)','AdminController@show');
+
+  Route::get('admin/movie/create','AdminController@create');
+
+  Route::post('admin/movie/create','AdminController@store');
+
+  Route::get('admin/movie/(:string)/edit','AdminController@edit');
+
+  Route::post('admin/movie/(:string)/update',
+    'AdminController@update');
+
+  Route::get('admin/(:string)/delete',
+    'AdminController@destroy');
+
+    // Authentication Routes  
+    Route::get('login', 
+    'LoginController@showLoginForm');
+    Route::get('loginFails', 
+    'LoginController@LoginFails');           
+    Route::post('login', 
+             'LoginController@login');  
+    Route::get('logout', 'LoginController@logout'); 
+
   Route::dispatch();
 
 ?>

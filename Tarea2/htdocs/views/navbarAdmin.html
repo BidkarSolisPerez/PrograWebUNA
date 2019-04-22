@@ -1,0 +1,32 @@
+<!-- file: views/navbar.html -->
+  <div class="row">  
+    <div class="three columns" style="margin-top: 1%">  
+    <img src="/icons/movies.jpg" 
+         style="width:5em;height:5em" class="button-icon"/>
+  </div>
+  <form action="/movie/search" method="post">
+  <div class="five columns" style="margin-top: 2%">  
+    <input class="u-full-width" type="text" name="keyword" value="">
+  </div>
+  <div class="two columns" style="margin-top: 2%"> 
+    <input class="button-primary" type="submit" value="Search">
+  </div>
+  </form>
+  <div class="two columns" style="margin-top: 3%"> 
+   <a href="/cart/">
+       <img src="/icons/cart.png" style="width:25px"/>
+    </a>
+  </div>
+  </div>
+ <div class="navBar" id="mainNavBar">  
+  <a href="/admin">All Categories</a>
+  <a href="/orders">Orders</a>
+  {{#login}}
+  <a href="/logout" login >Logout</a>
+  {{/login}}
+  {{^login}}
+  <a href="/login" login >Login</a>
+  {{~login}}
+  <a href="javascript:void(0);" class="icon" 
+     onClick="openDrawerMenu()">&#9776;</a>
+ </div>

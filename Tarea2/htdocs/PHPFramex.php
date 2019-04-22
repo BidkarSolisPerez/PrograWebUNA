@@ -907,7 +907,7 @@ class Auth {
   }
   
   public static function attempt($item) {
-	$user = DB::table('users')->where('email',$item['email'])->get();
+	$user = DB::table('user')->where('email',$item['email'])->get();
 	if (isset($user)) {
 	  if (trim($item['password']) == trim($user[0]['password'])) {
 	    Session::put('user',$item['email']);
