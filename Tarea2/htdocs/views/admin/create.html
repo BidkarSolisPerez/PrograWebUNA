@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <title>{{title}}</title>
-{{> header}}
+{{> headerAdmin}}
 </head>
 <body>
     {{> navbarAdmin}}
     <form action="/admin/movie/create" method="post">
-        {{#movie}}
-            {{> admin/detail}}
-        {{/movie}}
+        {{#order}}
+            {{> order/detail}}
+        {{/order}}
         <input class="button-primary" type="submit" value="Create">
     </form>
 </body>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- file: views/book/create.php -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+{{> headerAdmin}}
+</head>
+<body>
+ {{> navbarAdmin}}
+ <div class="container">
+  <div class="row">
+   <div class="eleven column" style="margin-top: 10%">
+    <h2>{{title}}</h2>
+    <form action="/orders" method="post">
+     {{#order}}
+        <!-- file: views/book/detail.html -->  
+<div class="row">  
+   <div class="three columns">  
+    <label for="id">Order ID</label>  
+    <input class="u-full-width" type="text" 
+     name="id" value="{{id}}">
+   </div>  
+   <div class="three columns">  
+    <label for="customer_name">Name</label>     
+    <input class="u-full-width" type="text"   
+     name="customer_name" value="{{customer_name}}">   
+   </div>
+   <div class="three columns">  
+     <label for="customer_email">Email</label>  
+     <input class="u-full-width" type="text" 
+      name="customer_email" value="{{customer_email}}">
+    </div>  
+    <div class="three columns">  
+     <label for="customer_address">Address</label>     
+     <input class="u-full-width" type="text"   
+      name="customer_address" value="{{customer_address}}">   
+    </div>  
+  </div>
+  <div class="row">  
+   <div class="three columns">  
+    <label for="card_number">Card Number</label>  
+    <input class="u-full-width" type="text" 
+     name="card_number" value="{{card_number}}">
+   </div>  
+   <div class="three columns">  
+    <label for="card_type">Card Type</label>     
+    <input class="u-full-width" type="text"   
+     name="card_type" value="{{card_type}}">   
+   </div>
+   <div class="three columns">  
+     <label for="order_state">Order State</label>  
+     <input class="u-full-width" type="text" 
+      name="order_state" value="{{order_state}}">
+    </div>  
+    <div class="three columns">  
+     <label for="total_order">Total</label>     
+     <input class="u-full-width" type="text"   
+      name="total_order" value="{{total_order}}">   
+    </div>  
+  </div> 
+     {{/order}}
+     <input class="button-primary" type="submit" value="Create">
+    </form>
+   </div>
+  </div>
+ </div>
+</body>

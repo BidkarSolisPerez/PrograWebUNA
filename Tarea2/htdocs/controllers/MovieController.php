@@ -25,6 +25,15 @@
           'title'=>'Movies']);
       }
 
+      public function search() {
+        $keyword = Input::get('keyword');
+        $movies = MovieModel::where("movie_title",$keyword);
+  
+        return view('movie/index',  
+         ['movies'=>$movies,
+          'title'=>'Movies','login'=>Auth::check()]);
+      }
+
   }
 
 ?>

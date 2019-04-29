@@ -6,7 +6,8 @@ class AdminController extends Controller {
 
     public function index(){
         $movies = MovieModel::all();
-        return view('admin/index',['movies'=>$movies,'title'=>'Admin Portal','login'=>Auth::check()]);}
+        return view('admin/index',['movies'=>$movies,'isSuper'=>Session::has('super'),'isSuper2'=>Session::has('super2'),
+        'title'=>'Admin Portal','login'=>Auth::check()]);}
 
     public function show($id) {  
         $movie = MovieModel::find($id);  

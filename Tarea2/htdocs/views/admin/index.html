@@ -22,14 +22,18 @@
       <td>
       <a class="button button-icon" href="admin/movie/{{id}}">
         <img src="/icons/font-eye.png" style="width:15px"/></a>
+        {{#isSuper}}
       <a class="button button-icon" href="admin/movie/{{id}}/edit">
         <img src="/icons/font-edit.png" style="width:15px"></i></a>
       <a class="button button-icon" href="admin/{{id}}/delete">
         <img src="/icons/font-trash.png" style="width:15px"></i></a>
       </tr>
+      {{/isSuper}}
       {{/movies}}</tbody>
      </table>
-     <a class="button button-primary" href="/admin/movie/create">New</a>
+     {{#isSuper2}}
+     <a class="button button-primary" href="/orders/create">New</a>
+     {{/isSuper2}}
     </div>
  </div>
 </body>

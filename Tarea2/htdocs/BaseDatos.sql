@@ -25,14 +25,13 @@ CREATE TABLE "cart"(
 
 CREATE TABLE "order"(
     "id" INTEGER PRIMARY KEY,
-    "order_number" INTEGER,
     "customer_name" TEXT,
     "customer_email" TEXT,
     "customer_address" TEXT,
-    "card_number" INTEGER,
-    "card_type" INTEGER,
+    "card_number" TEXT,
+    "card_type" TEXT,
     "order_state" TEXT,
-    "total_order" INTEGER
+    "total_order" NUMERIC
 )
 
 
