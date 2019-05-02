@@ -1,5 +1,4 @@
 <?php
-
 require_once('models/MovieModel.php');
 
 class AdminController extends Controller {
@@ -13,10 +12,9 @@ class AdminController extends Controller {
         $movie = MovieModel::find($id);  
         return view('admin/show',
           ['movie'=>$movie,'rdnly'=>true,
-           'title'=>'Movie Detail','login'=>Auth::check()]);
+           'title'=>'Movie Detail','isSuper'=>Session::has('super'),'isSuper2'=>Session::has('super2'),'login'=>Auth::check()]);
       }  
-  
-      
+   
     public function create() {
         $movie = ['movie_title'=>'','movie_description'=>'',  
                  'movie_duration'=>'','movie_director'=>'',

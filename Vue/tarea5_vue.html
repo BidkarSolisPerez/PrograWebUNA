@@ -1,0 +1,58 @@
+<html>  
+<head>  
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>  
+</head>  
+<body>  
+  <div id='app'>
+  <h2>Calendario de eventos</h2>
+    <table border="1">
+		<tr>
+			<th>Dia</th>
+			<th>Hora</th>
+			<th>Evento</th>
+			<th>Operation</th>
+		</tr>
+		<tr v-for="(event,index) in eventList">
+			<td>{{event.dia}}</td>
+			<td>{{event.hora}}</td>
+			<td>{{event.evento}}</td>
+			<td><button v-on:click="deleteEvent(index)" value="Borrar">Borrar</button></td>
+		</tr>
+		<tr>
+			<td><input ref="dia" type="text"></input></td>
+			<td><input ref="hora" type="text"></input></td>
+			<td><input ref="evento" type="text"></input></td>
+			<td><button v-on:click="addEvent" value="Borrar">Nuevo</button></td>
+		</td>
+	</table>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        eventList: [
+          { dia: '23/02/2013', hora: '10:30 am', evento: 'clase a' },
+          { dia: '23/02/2013', hora: '7:00 am', evento: 'clase b' },
+          { dia: '23/02/2013', hora: '2:00 pm', evento: 'clase c' }
+        ]
+      },
+      methods: {
+        addEvent : function (event){
+          //diaEntrante = this.$refs.dia.value;
+          diaEntrante = this.$refs.dia.value;
+          horaEntrante = this.$refs.hora.value;
+          eventoEntrante = this.$refs.evento.value;
+          item = {dia:diaEntrante,hora:horaEntrante,evento:eventoEntrante};
+          this.eventList.push(item);
+          this.$refs.dia.value = ''
+          this.$refs.hora.value = ''
+          this.$refs.evento.value = ''
+        },
+        deleteEvent: function(pos,event){
+          this.eventList.splice(pos,1);
+        }
+      }
+    })
+  </script>  
+</body>  
+</html>

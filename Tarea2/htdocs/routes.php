@@ -1,14 +1,10 @@
 <?php    
   // file: routes.php  
 
-  //Route::get('/','BookController@index');
+  //Route para movies
   Route::get('/', 'MovieController@index');
 
-  //Route::get('book/cat/(:string)','BookController@category');
-
   Route::get('movie/cat/(:string)','MovieController@category');
-
-  //Route::get('book/(:string)','BookController@show');
 
   Route::get('movie/(:string)','MovieController@show');
 

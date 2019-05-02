@@ -8,9 +8,10 @@
 <body>
     {{> navbarAdmin}}
     <form action="/admin/movie/create" method="post">
-        {{#order}}
-            {{> order/detail}}
-        {{/order}}
+        <h3>{{title}}</h3>
+        {{#movie}}
+            {{> admin/detail}}
+        {{/movie}}
         <input class="button-primary" type="submit" value="Create">
     </form>
 </body>
