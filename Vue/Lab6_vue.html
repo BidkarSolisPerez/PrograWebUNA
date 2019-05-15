@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+        <!--
+        <div id="app">
+            <ol>
+                <li v-for="(item,index) in agenda">{{item.nombre}}</li>
+            </ol>
+        </div>
+        -->
+        <div id="app">
+            <center>
+                <div style="width: 45%;float:left">
+                    <h1 style="text-align: center">All Contacts</h1>
+                    <table border="1">
+                        <tr>
+                            <th>Contact Name</th>
+                        </tr>
+                        <tr v-for="(contact,index) in agenda" v-on:click="contactClick(index)">
+                            <td>{{contact.nombre}}</td>
+                        </tr>
+                    </table>
+                    </div>
+                <div style="width: 55%;float:right">
+                    <h1 style="text-align: center">Actions</h1>
+                    <form style="width: 50%">
+                        <label style="float: left; width: 20%;" for="currentName">Name:</label>
+                        <input style="width: 75%" id="currentName" v-model="currentName"></input><br>
+                        <label style="float: left; width: 20%;" for="currentWork">Work:</label>
+                        <input style="width: 75%" id="currentWork" v-model="currentWork"></input><br>
+                        <label style="float: left; width: 20%;" for="currentMobile">Mobile:</label>
+                        <input style="width: 75%" id="currentMobile" v-model="currentMobile"></input><br>                            
+                        <label style="float: left; width: 20%;" for="currentEmail">Email:</label>
+                        <input style="width: 75%" id="currentEmail" v-model="currentEmail"></input><br>                           
+                        <label style="float: left; width: 20%;" for="currentAddress">Address:</label>
+                        <input style="width: 75%" id="currentAddress" v-model="currentAddress"></input><br> 
+                        <label style="float: left; width: 20%;" for="currentIndex">Index:</label>
+                        <input style="width: 75%" id="currentIndex" v-model="currentIndex"></input><br>                    
+                    </form>
+                    <button v-on:click="deleteContact(currentIndex)">-</button><button v-on:click="addContact">+</button>
+
+                </div>
+            </center>
+        </div>
+        <script>
+            var app =  new Vue({
+                el: "#app",
+                data:{
+                    currentName:"",currentWork:"",currentMobile:"",currentEmail:"", currentAddress:"",currentIndex:"",
+                    message: "Hola",
+                    agenda : [
+                        {nombre: 'Gonzalo Gonzalez',workPhone: '22578487',mobile: '88215478',email: 'email@email.com',address:'San Jose, Escazu'},
+                        {nombre: 'Mario Maroto',workPhone: '23546898',mobile: '83215469',email: 'email@email.com',address:'San Jose, Moravia'},
+                        {nombre: 'Rodrigo Rodriguez',workPhone: '24587437',mobile: '85218677',email: 'email@email.com',address:'Heredia, Flores'},
+                        {nombre: 'Zara Soto',workPhone: '24623658',mobile: '84659852',email: 'email@email.com',address:'San Jose, Santa Ana'}
+                    ]
+                },
+                methods:{   
+                    contactClick : function(index,event){
+                        this.currentName = this.agenda[index]['nombre'];
+                        this.currentWork = this.agenda[index]['workPhone'];
+                        this.currentMobile = this.agenda[index]['mobile'];
+                        this.currentEmail = this.agenda[index]['email'];
+                        this.currentAddress = this.agenda[index]['address'];
+                        this.currentIndex = index;
+                        //this.message+=this.agenda[index]['nombre'];
+                    },
+                    addContact : function (event){
+                        if(this.currentName != "" || this.currentWork != "" || this.currentEmail != ""){
+                            nameEntrante = this.currentName;
+                            workEntrante = this.currentWork;
+                            mobileEntrante = this.currentMobile;
+                            emailEntrante = this.currentEmail;
+                            addressEntrante = this.currentAddress;
+                            item = {nombre:nameEntrante,workPhone:workEntrante,mobile:mobileEntrante,email:emailEntrante,address:addressEntrante};
+                            this.agenda.push(item);
+                            this.currentName = "";
+                            this.currentWork = "";
+                            this.currentMobile = "";
+                            this.currentEmail = "";
+                            this.currentAddress = "";
+                            this.currentIndex = "";
+                        }
+                    },
+                    deleteContact : function (pos,event){
+                        if(pos >= 0 && pos != ""){
+                            this.agenda.splice(pos,1);
+                            this.currentName = "";
+                            this.currentWork = "";
+                            this.currentMobile = "";
+                            this.currentEmail = "";
+                            this.currentAddress = "";
+                            this.currentIndex = "";
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
