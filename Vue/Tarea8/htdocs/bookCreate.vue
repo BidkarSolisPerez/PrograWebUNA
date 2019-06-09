@@ -10,14 +10,14 @@
                   name="title" v-model="book.title">
          </div>  
          <div class="six columns">  
-            <label for="author_id">Author</label>   
+            <label for="author">Author</label>   
             <input class="u-full-width" type="text"
                    name="author" v-model="book.author">
           </div>
        </div>
        <div class="row">
          <div class="six columns">
-           <label for="publisher_id">Publisher</label>   
+           <label for="publisher">Publisher</label>   
            <input class="u-full-width" type="text"  
                   name="publisher" v-model="book.publisher">
          </div>  
@@ -31,6 +31,9 @@
       <button class="button button-primary" v-on:click="saveBook">  
         Save  
       </button>
+                <router-link class="button button-icon" :to="'/'">
+            <img src="/icons/back.png" style="width:25px">
+          </router-link>
     </div>
 </template>
 
@@ -40,7 +43,7 @@ module.exports = {
   data: function() {
     return {
       title: "Book Create",
-      book: {id:"",title:"",author:"",
+      book: {title:"",author:"",
        publisher:"",edition:""}
     }
   },
@@ -49,11 +52,10 @@ module.exports = {
       if(this.book['title']=="" || this.book['author']=="" || this.book['publisher']=="" || this.book['edition']==""){
         alert("Please review all values have been added");
       }else{
-        book = {id:this.books.length+1,title:this.book['title'],author:this.book['author'],publisher:this.book['publisher'],edition:this.book['edition']}
-        this.books.push(book);
-        this.book = {id:"",title:"",author:"",
-        publisher:"",edition:""}
-        this.$router.push('/');
+         Vue.http.post('/book', this.book,{headers: {'Content-Type': 'application/json','emulateJSON':'true'}})
+          .then((response)=>{console.log(response);});
+            this.book =  {title:" ",author:" ", publisher:" ",edition:" "};
+            app.fetchBooks();
       }
     }
   }

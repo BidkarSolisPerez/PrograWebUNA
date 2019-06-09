@@ -28,10 +28,9 @@
          </div>
        </div>
       </div>
-	  <router-link class="button button-primary" to="/">New
+	  <router-link class="button button-primary" to="/">Back
       </router-link>
     </div>
-  </div>
 </template>
 
 <script>

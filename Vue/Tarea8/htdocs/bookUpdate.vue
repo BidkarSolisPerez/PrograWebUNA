@@ -10,14 +10,14 @@
                   name="title" v-model="book.title">
          </div>  
          <div class="six columns">  
-            <label for="author_id">Author</label>   
+            <label for="author">Author</label>   
             <input class="u-full-width" type="text"
                    name="author" v-model="book.author">
           </div>
        </div>
        <div class="row">
          <div class="six columns">
-           <label for="publisher_id">Publisher</label>   
+           <label for="publisher">Publisher</label>   
            <input class="u-full-width" type="text"  
                   name="publisher" v-model="book.publisher">
          </div>  
@@ -28,8 +28,13 @@
          </div>
        </div>
       </div>
+      <button class="button button-primary" v-on:click="updateBook">  
+        Update  
+      </button>
+      <router-link class="button button-icon" :to="'/'">
+          <img src="/icons/back.png" style="width:25px">
+      </router-link>
     </div>
-  </div>
 </template>
 
 <script>
@@ -41,8 +46,12 @@ module.exports = {
     }
   },
   methods: {
-    addItem() {
+    updateBook() {
+      Vue.http.put('/book/'+book.id, this.book,
+        {headers: {'Content-Type': 'application/json'}}).then((response) => {
+        app.fetchBooks();
+      });
     }
   }
 }
-</script>
+</script> 

@@ -13,7 +13,7 @@
  <div id="app" class="container">
   <router-view v-bind:books="books"></router-view>
  </div>
- <script type="text/javascript">
+ <script defer>
 
 function findBook(route) {
   var id = route.params.id;
@@ -29,8 +29,9 @@ function delBook(route) {
   var id = route.params.id;
   for(var i=0; i<app.books.length; i++)
     if(app.books[i].id == id) {
-       app.books.splice(i, 1);
-       break;
+      Vue.http.delete('/book/'+id)
+        .then((response) => {console.log(response)})
+        .then((id) => {alert("Libro eliminado")});  
     }
 }
 
